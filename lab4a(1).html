@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Text Example</title>
+</head>
+<body>
+
+<div id="myElement">
+    <p id="text">Welcome to my website!</p>
+</div>
+
+<button onclick="changeText()">Click to change text</button>
+
+<script>
+    function changeText() {
+        document.getElementById("text").textContent = "Hello there!";
+    }
+</script>
+
+</body>
+</html>
