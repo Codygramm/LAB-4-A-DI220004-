@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Details - Lab4b(1)</title>
+</head>
+<body>
+    <h1>Book Details</h1>
+    <p><strong>Title of the First Book:</strong> <span id="firstBookTitle"></span></p>
+    <p><strong>Author of the Second Book:</strong> <span id="secondBookAuthor"></span></p>
+    <p><strong>Genres of All Books:</strong> <span id="allGenres"></span></p>
+
+    <script>
+        // Fetch the JSON data and display the required information
+        fetch('lab4b(1).json')
+            .then(response => response.json())
+            .then(data => {
+                // Display the title of the first book
+                document.getElementById('firstBookTitle').textContent = data.Book[0].title;
+
+                // Display the author of the second book
+                document.getElementById('secondBookAuthor').textContent = data.Book[1].author;
+
+                // Collect genres from all books and display them as a comma-separated list
+                const allGenres = data.Book.flatMap(book => book.genres);
+                document.getElementById('allGenres').textContent = [...new Set(allGenres)].join(', ');
+            })
+            .catch(error => console.error('Error loading JSON:', error));
+    </script>
+</body>
+</html>

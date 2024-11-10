@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Table - Lab4b(1)</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>Book Table</h1>
+    <table id="bookTable">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Publication Year</th>
+                <th>Genres</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Rows will be added here by JavaScript -->
+        </tbody>
+    </table>
+
+    <script>
+        // Fetch the JSON data and populate the table
+        fetch('lab4b(1).json')
+            .then(response => response.json())
+            .then(data => {
+                const tableBody = document.querySelector('#bookTable tbody');
+                data.Book.forEach(book => {
+                    const row = document.createElement('tr');
+
+                    const titleCell = document.createElement('td');
+                    titleCell.textContent = book.title;
+                    row.appendChild(titleCell);
+
+                    const authorCell = document.createElement('td');
+                    authorCell.textContent = book.author;
+                    row.appendChild(authorCell);
+
+                    const yearCell = document.createElement('td');
+                    yearCell.textContent = book.publicationYear;
+                    row.appendChild(yearCell);
+
+                    const genresCell = document.createElement('td');
+                    genresCell.textContent = book.genres.join(', ');
+                    row.appendChild(genresCell);
+
+                    tableBody.appendChild(row);
+                });
+            })
+            .catch(error => console.error('Error loading JSON:', error));
+    </script>
+</body>
+</html>
